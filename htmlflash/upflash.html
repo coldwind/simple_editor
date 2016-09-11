@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link href="editor_css/core.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+</head>
+<script type="text/javascript">
+function Insert_flash()
+{
+	if(document.sub_flash.flashurl.value == '' || document.sub_flash.flashurl.value == 'http://')
+	{
+		alert("请输入的FLASH URL");
+		return false;
+	}
+	var flash_style = /^http:\/\/.+\.swf/;
+	if(!flash_style.exec(document.sub_flash.flashurl.value))
+	{
+		alert("你输入的FLASH URL格式不正确");
+		document.sub_flash.flashurl.focus();
+		return false;
+	}
+	else
+	{
+		var flashhtml = '<embed src="'+document.sub_flash.flashurl.value+'" quality="high" width="480" height="400" align="middle" allowScriptAccess="sameDomain" type="application/x-shockwave-flash" wmode="transparent"></embed>';
+		window.isIE = (navigator.appName == "Microsoft Internet Explorer");
+		if(window.isIE) {
+			window.returnValue = flashhtml;
+		}
+		else
+		{
+			window.opener.open_add_html(flashhtml);
+		}
+		window.close();
+	}
+}
+</script>
+<body>
+<div class="edt_pop" style="left:2px;top:2px;">
+	<h2 class="titlebar">插入视频</h2>
+	<div class="edt_main">
+	<form action="upflash.php" name="sub_flash" method="POST" id="sub_flash">
+		<P>链接内容：<input name="flashurl" type="text" class="input_txt" id="flashurl" size="20" value="http://"></p>
+		<p class="p_act"><input type="button" value="确 定" class="input_submit" onclick="Insert_flash()" />
+		<input type="button" value="取 消" class="input_gray" onClick="window.close();" />
+		</p>
+	</form>
+	</div>
+</div>
+</body>
+</html>

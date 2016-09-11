@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="editor_css/core.css" rel="stylesheet" type="text/css" />
+<script>
+function return_linkhtml()
+{
+	if(document.link_form.linkurl.value=="" || document.link_form.linkurl.value=="http://")
+	{
+		alert("请输入超链接地址");
+		document.link_form.linkurl.focus();
+		return false;
+	}
+	else
+	{
+		if(document.link_form.linkbody.value!='')
+		{
+			var html = document.link_form.linkurl.value+"|c@w|"+document.link_form.linkbody.value;
+		}
+		else
+		{
+			var html = document.link_form.linkurl.value;
+		}
+	}
+	window.returnValue=html;
+	window.close();
+}
+</script>
+</head>
+<body style="width:350px">
+<div class="edt_pop" style="left:2px;top:2px;">
+	<h2 class="titlebar">插入链接</h2>
+	<div class="edt_main">
+	<form name="link_form" method="post" action="">
+		<P>链接内容：<input name="linkbody" type="text" class="p_inputtext" id="linkbody" size="20" maxlength="100"></p>
+		<p>链接地址：<input name="linkurl" type="text" class="p_inputtext" id="linkurl" value="http://" size="20" maxlength="100"></p>
+		<p class="p_act"><input type="button" value="确 定" class="input_submit" onClick="return_linkhtml()" />
+		<input type="button" value="取 消" class="input_gray" onClick="window.close();" />
+		</p>
+	</form>
+	</div>
+</div>
+</body>
+</html>

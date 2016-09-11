@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh" lang="zh">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="editor_css/core.css" rel="stylesheet" type="text/css" />
+<title>COLDWIND-在线编辑器</title>
+<script src="editor_js/format.js"></script>
+</head>
+
+<body onload="windowLoad()">
+<div style="background:#fff; display: none; position: absolute; z-index: 100000; top: 68px;  font-size:12px;" id="set_up_color_div">
+<div style="border: 1px solid #c0c0c0; width: 155px; background-color: white; padding:2px 1px;">
+<div style="position: relative; margin-left: 2px; margin:5px 5px 2px 3px; height: 19px;">
+<span style="float:right" onMouseDown="this.className='mouse_click'" onMouseUp="this.className='mouse_over'" onMouseOver="this.className='mouse_over'" onMouseOut="this.className='mouse_out'" onClick="nocolors()"><img src="editor_img/nocolor.gif" width="15" height="15" style="cursor: pointer;"></span>
+<div style="width:50px; height:16px; border:#ccc 1px solid; float:left; margin-right:5px;" id="show_color">&nbsp;</div><div id="color_id" style="padding-top:3px; "></div>
+</div>
+<div style="clear:both;">
+<table cellspacing="3" cellpadding="0" style="border-collapse: separate;" >
+<tbody><tr>
+<td onMouseOver="show_colors('#000000')" onMouseOut="clear_colors()" onClick="click_colors('#000000')"><img title="黑色" style="border: 1px solid #999; background-color: #000000; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#993300')" onMouseOut="clear_colors()" onClick="click_colors('#993300')"><img title="褐色" style="border: 1px solid #999; background-color: #993300; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#333300')" onMouseOut="clear_colors()" onClick="click_colors('#333300')"><img title="橄榄色" style="border: 1px solid #999; background-color: #333300; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#003300')" onMouseOut="clear_colors()" onClick="click_colors('#003300')"><img title="深绿" style="border: 1px solid #999; background-color: #003300; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#003366')" onMouseOut="clear_colors()" onClick="click_colors('#003366')"><img title="深青" style="border: 1px solid #999; background-color: #003366; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#000080')" onMouseOut="clear_colors()" onClick="click_colors('#000080')"><img title="深蓝" style="border: 1px solid #999; background-color: #000080; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#333399')" onMouseOut="clear_colors()" onClick="click_colors('#333399')"><img title="靛蓝" style="border: 1px solid #999; background-color: #333399; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#333333')" onMouseOut="clear_colors()" onClick="click_colors('#333333')"><img title="灰色-80%" style="border: 1px solid #999; background-color: #333333; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+</tr><tr>
+<td onMouseOver="show_colors('#800000')" onMouseOut="clear_colors()" onClick="click_colors('#800000')"><img title="深红" style="border: 1px solid #999; background-color: #800000; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ff6600')" onMouseOut="clear_colors()" onClick="click_colors('#ff6600')"><img title="橙色" style="border: 1px solid #999; background-color: #ff6600; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#808000')" onMouseOut="clear_colors()" onClick="click_colors('#808000')"><img title="深黄" style="border: 1px solid #999; background-color: #808000; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#008000')" onMouseOut="clear_colors()" onClick="click_colors('#008000')"><img title="绿色" style="border: 1px solid #999; background-color: #008000; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#008080')" onMouseOut="clear_colors()" onClick="click_colors('#008080')"><img title="青色" style="border: 1px solid #999; background-color: #008080; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#0000ff')" onMouseOut="clear_colors()" onClick="click_colors('#0000ff')"><img title="蓝色" style="border: 1px solid #999; background-color: #0000ff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#666699')" onMouseOut="clear_colors()" onClick="click_colors('#666699')"><img title="蓝-灰" style="border: 1px solid #999; background-color: #666699; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#808080')" onMouseOut="clear_colors()" onClick="click_colors('#808080')"><img title="灰色-50%" style="border: 1px solid #999; background-color: #808080; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+</tr><tr>
+<td onMouseOver="show_colors('#ff0000')" onMouseOut="clear_colors()" onClick="click_colors('#ff0000')"><img title="红色" style="border: 1px solid #999; background-color: #ff0000; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ff9900')" onMouseOut="clear_colors()" onClick="click_colors('#ff9900')"><img title="浅橙色" style="border: 1px solid #999; background-color: #ff9900; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#99cc00')" onMouseOut="clear_colors()" onClick="click_colors('#99cc00')"><img title="酸橙色" style="border: 1px solid #999; background-color: #99cc00; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#339966')" onMouseOut="clear_colors()" onClick="click_colors('#339966')"><img title="海绿" style="border: 1px solid #999; background-color: #339966; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#33cccc')" onMouseOut="clear_colors()" onClick="click_colors('#33cccc')"><img title="水绿色" style="border: 1px solid #999; background-color: #33cccc; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#3366ff')" onMouseOut="clear_colors()" onClick="click_colors('#3366ff')"><img title="浅蓝" style="border: 1px solid #999; background-color: #3366ff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#800080')" onMouseOut="clear_colors()" onClick="click_colors('#800080')"><img title="紫罗兰" style="border: 1px solid #999; background-color: #800080; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#999999')" onMouseOut="clear_colors()" onClick="click_colors('#999999')"><img title="灰色-40%" style="border: 1px solid #999; background-color: #999999; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+</tr><tr>
+<td onMouseOver="show_colors('#ff00ff')" onMouseOut="clear_colors()" onClick="click_colors('#ff00ff')"><img title="粉红" style="border: 1px solid #999; background-color: #ff00ff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ffcc00')" onMouseOut="clear_colors()" onClick="click_colors('#ffcc00')"><img title="金色" style="border: 1px solid #999; background-color: #ffcc00; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ffff00')" onMouseOut="clear_colors()" onClick="click_colors('#ffff00')"><img title="黄色" style="border: 1px solid #999; background-color: #ffff00; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#00ff00')" onMouseOut="clear_colors()" onClick="click_colors('#00ff00')"><img title="鲜绿" style="border: 1px solid #999; background-color: #00ff00; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#00ffff')" onMouseOut="clear_colors()" onClick="click_colors('#00ffff')"><img title="青绿" style="border: 1px solid #999; background-color: #00ffff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#00ccff')" onMouseOut="clear_colors()" onClick="click_colors('#00ccff')"><img title="天蓝" style="border: 1px solid #999; background-color: #00ccff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#993366')" onMouseOut="clear_colors()" onClick="click_colors('#993366')"><img title="梅红" style="border: 1px solid #999; background-color: #993366; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#c0c0c0')" onMouseOut="clear_colors()" onClick="click_colors('#c0c0c0')"><img title="灰色-25%" style="border: 1px solid #999; background-color: #c0c0c0; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+</tr><tr>
+<td onMouseOver="show_colors('#ff99cc')" onMouseOut="clear_colors()" onClick="click_colors('#ff99cc')"><img title="玫瑰红" style="border: 1px solid #999; background-color: #ff99cc; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ffcc99')" onMouseOut="clear_colors()" onClick="click_colors('#ffcc99')"><img title="茶色" style="border: 1px solid #999; background-color: #ffcc99; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ffff99')" onMouseOut="clear_colors()" onClick="click_colors('#ffff99')"><img title="浅黄" style="border: 1px solid #999; background-color: #ffff99; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ccffcc')" onMouseOut="clear_colors()" onClick="click_colors('#ccffcc')"><img title="浅绿" style="border: 1px solid #999; background-color: #ccffcc; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ccffff')" onMouseOut="clear_colors()" onClick="click_colors('#ccffff')"><img title="浅青绿" style="border: 1px solid #999; background-color: #ccffff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#99ccff')" onMouseOut="clear_colors()" onClick="click_colors('#99ccff')"><img title="淡蓝" style="border: 1px solid #999; background-color: #99ccff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#cc99ff')" onMouseOut="clear_colors()" onClick="click_colors('#cc99ff')"><img title="淡紫" style="border: 1px solid #999; background-color: #cc99ff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+<td onMouseOver="show_colors('#ffffff')" onMouseOut="clear_colors()" onClick="click_colors('#ffffff')"><img title="白色" style="border: 1px solid #999; background-color: #ffffff; font-size: 1px; width: 14px; height: 14px; cursor: pointer;" src="editor_img/empty.gif"/></td>
+</tr></tbody></table></div>
+</div></div>
+<div class="edt_pop" id="link_id" style="left:20%;top:5%;display:none">
+	<h2 class="titlebar"><span class="right"><a href="javascript:show_div_link();"><span>关闭</span></a></span>插入链接</h2>
+	<div class="edt_main">
+	<form name="link_form" method="post" action="">
+		<P>链接内容：<input name="linkbody" type="text" class="input_txt" id="linkbody" size="20" maxlength="100"></p>
+		<p>链接地址：<input name="linkurl" type="text" class="input_txt" id="linkurl" value="http://" size="20" maxlength="100"></p>
+		<p class="p_act"><input type="button" value="确 定" class="input_submit" onClick="div_link()" />
+		<input type="button" value="取 消" class="input_gray" onClick="show_div_link()" />
+		</p>
+	</form>
+	</div>
+</div>
+<div class="edt_pop" style="left:50%;top:5%;display:none;" id="table_id">
+	<h2 class="titlebar"><span class="right"><a href="javascript:show_div_table();"><span>关闭</span></a></span>插入表格</h2>
+	<div class="edt_main">
+	<table>
+	<form action="" method="post" name="table_form" id="table_form">
+	<tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">行数：</td>
+      <td width="60" height="25" bgcolor="#FFFFFF"><input name="rows" type="text" id="rows" size="8" maxlength="2"></td>
+      <td width="50" height="25" align="right" bgcolor="#FFFFFF">列数：</td>
+      <td height="25" bgcolor="#FFFFFF"><input name="lgd" type="text" id="lgd" size="8" maxlength="2"></td>
+    </tr>
+    <tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">表格宽度：</td>
+      <td height="25" colspan="3" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <td width="75"><input name="table_w" type="text" id="table_w" value="100" size="8" maxlength="5"></td>
+      <td><select name="table_u" class="editor_txt" id="table_u">
+      <option value="1">像素</option>
+      <option value="2" selected>百分比</option>
+      </select></td>
+      </tr>
+      </table></td>
+     </tr>
+    <tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">边框粗细：</td>
+      <td height="25" colspan="3" bgcolor="#FFFFFF"><input name="table_border" type="text" class="input_txt" id="table_border" value="1" size="8" maxlength="2"></td>
+      </tr>
+    <tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">单元格边距：</td>
+      <td height="25" colspan="3" bgcolor="#FFFFFF"><input name="table_cellp" type="text" class="input_txt" id="table_cellp" value="0" size="8" maxlength="2"></td>
+      </tr>
+    <tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">单元格间距：</td>
+      <td height="25" colspan="3" bgcolor="#FFFFFF"><input name="table_cells" type="text" class="input_txt" id="table_cells" value="0" size="8" maxlength="2"></td>
+      </tr>
+    <tr>
+      <td height="25" colspan="4" align="center" valign="middle" bgcolor="#FFFFFF">
+        <input type="button" value="确 定" class="input_submit" onClick="div_table()"  />
+		<input type="button" value="取 消" class="input_gray" onClick="show_div_table()" /></td>
+    </tr></form>
+	</table>
+	</div>
+</div>
+<form name="form1" method="post" action="" onSubmit="return(subeditor())">
+<div id="toolbar">  
+<div style="display: block;" class="edt_relt">
+<table border="0" class="nEdt">  
+<tbody><tr class="top">    
+<td class="td0" rowspan="2"> </td>    
+<td class="td1" rowspan="2"><div title="粘贴" class="com"  onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ pst i"><img src="editor_img/empty.gif" class="bpic" onClick="formats('Paste')" /></div></div></td>    
+<td class="td2"><div title="剪切" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ cut i"><img src="editor_img/empty.gif" class="pic" onClick="formats('Cut')" /></div></div></td> 
+<td class="td2"><div title="恢复" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ cback i"><img src="editor_img/empty.gif" class="pic" onClick="formats('Redo')" /></div></div></td>
+<td class="td3" rowspan="2"><div class="av_ spl i"><img src="editor_img/empty.gif"/></div></td>
+<td class="td4 zhgh" colspan="3">
+<SELECT name="fontname" id="fontname" onChange="fontstyles(this.form.fontname.value)" style="width:87px">
+    <OPTION value="" selected>字体</OPTION>
+    <OPTION value="宋体">宋体</OPTION>
+    <OPTION value="新宋体">新宋体</OPTION>
+    <OPTION value="楷体_GB2312">楷体_GB2312</OPTION>
+    <OPTION value="黑体">黑体</OPTION>
+    <OPTION value="arial,helvetica,sans-serif">Arial</OPTION>
+    <OPTION value="courier new,courier,monospace">Courier New</OPTION>
+    <OPTION value="georgia,times new roman,times,serif">Georgia</OPTION>
+    <OPTION value="tahoma,arial,helvetica,sans-serif">Tahoma</OPTION>
+    <OPTION value="Times New Roman, Times, serif">Times New Roman</OPTION>
+    <OPTION value="verdana,arial,helvetica,sans-serif">Verdana</OPTION>
+    <OPTION value="impact">impact</OPTION>
+    <OPTION value="wingdings">WingDings</OPTION>
+</SELECT>
+</td>    
+
+<td class="td5 zhgh" colspan="2" >
+<SELECT name="fontsize" id="fontsize" onChange="fontsizes(this.form.fontsize.value)" style="width:54px">
+	<OPTION value="" selected>字号</OPTION>
+	<OPTION value="1">1 (8pt)</OPTION>
+	<OPTION value="2">2 (10pt)</OPTION>
+	<OPTION value="3">3 (12pt)</OPTION>
+	<OPTION value="4">4 (14pt)</OPTION>
+	<OPTION value="5">5 (18pt)</OPTION>
+	<OPTION value="6">6 (24pt)</OPTION>
+	<OPTION value="7">7 (36pt)</OPTION>
+</SELECT>
+</td>    
+
+<td class="td3" rowspan="2"><div class="av_ spl i"><img src="editor_img/empty.gif"/></div></td>    
+<td class="td2"><div title="数字列表" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ olt i"><img src="editor_img/empty.gif" class="pic" onClick="formats('InsertOrderedList')" /></div></div></td>    
+<td class="td2"><div title="符号列表" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ ult i"><img src="editor_img/empty.gif" class="pic" onClick="formats('InsertUnorderedList')" /></div></div></td>    
+<td class="td2"><div title="增加缩进" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ idt i"><img src="editor_img/empty.gif" class="pic" onClick="formats('Indent')" /></div></div></td>    
+<td class="td2"><div title="减少缩进" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ odt i"><img src="editor_img/empty.gif" class="pic" onClick="formats('Outdent')" /></div></div></td>    
+<td class="td3" rowspan="2"><div class="av_ spl i"><img src="editor_img/empty.gif"/></div></td>    
+<td class="td1" rowspan="2"><div  title="添加图片" class="com" id="ImageBtn" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ ima i"><img src="editor_img/empty.gif" class="bpic" onClick="show_image_div()" /></div></div></td>
+<td class="td1" rowspan="2"><div title="添加视频" class="com" id="ImageBtn" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ ivi i"><img src="editor_img/empty.gif" class="bpic" onClick="show_flash_div()" /></div></div></td>     
+
+<td class="td2"><div title="添加表格" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ tbl i"><img src="editor_img/empty.gif" class="pic" onClick="show_div_table()" /></div></div></td>    
+<td class="td2"><div title="分隔线" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ lne i"><img src="editor_img/empty.gif" class="pic" onClick="formats('InsertHorizontalRule')" /></div></div></td>    
+<td class="td2"><div title="清除格式" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ fmt i"><img src="editor_img/empty.gif" class="pic" onClick="formats('RemoveFormat')" /></div></div></td>    
+ <td> </td>
+  <td class="td6"><div class="menu"><span><a href="javascript:browse();">预览</a></span>    </div></td>  </tr> 
+  
+   <tr class="bottom">    
+<td class="td2"><div title="复制" id="CopyBtn" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ cpy i"><img src="editor_img/empty.gif" class="pic" onClick="formats('Copy')" /></div></div></td>  
+<td class="td2"><div title="撤消" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ recall i"><img src="editor_img/empty.gif" class="pic" onClick="formats('Undo')" /></div></div></td>   
+<td class="td2"><div title="加粗" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ bld i"><img src="editor_img/empty.gif" class="pic" onClick="formats('bold')" /></div></div></td>
+<td class="td2"><div title="斜体" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ Ita i"><img src="editor_img/empty.gif" class="pic" onClick="formats('italic')" /></div></div></td>  
+<td class="td2"><div title="下划线" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ udl i"><img src="editor_img/empty.gif" class="pic" onClick="formats('underline')" /></div></div></td>    
+<td class="td2"><div class="edt_relt"><div title="字体颜色" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ fco i"><img src="editor_img/empty.gif" class="pic" onClick="setcolor(1)" /></div></div>  </td>    
+<td class="td2"><div class="edt_relt"><div title="背景颜色" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ bco i"><img src="editor_img/empty.gif" class="pic" onClick="setcolor(2)" /></div></div>  </td>    
+<td class="td2"><div title="左对齐" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ jtl i"><img src="editor_img/empty.gif" class="pic" onClick="formats('JustifyLeft')" /></div></div></td>    
+<td class="td2"><div title="居中对齐" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ jtc i"><img src="editor_img/empty.gif" class="pic" onClick="formats('JustifyCenter')" /></div></div></td>   
+ <td class="td2"><div title="右对齐" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ jtr i"><img src="editor_img/empty.gif" class="pic" onClick="formats('JustifyRight')" /></div></div></td>    
+ <td class="td2"><div title="两端对齐" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ pra i"><img src="editor_img/empty.gif" class="pic" onClick="formats('JustifyFull')" /></div></div></td>    
+ <td class="td2"><div title="超链接" class="com" onMouseOver="this.className='over'" onMouseOut="this.className='com'" onMouseDown="this.className='click'" onMouseUp="this.className='over'"><div class="av_ lnk i"><img src="editor_img/empty.gif" class="pic" onClick="show_div_link()" /></div></div></td>    
+ <td class="td2"></td>
+<td class="td2"></td>
+<td> </td>  
+</tr>
+</tbody>
+</table>
+</div>
+<div class="edt_cont">
+ <iframe frameborder="0" id="editor" name="editor" style="width:718px; height:500px;" marginheight="3" marginwidth="3" scrolling="auto"></iframe>
+ <textarea name="html2text_area" style="width:718px; height:500px; border:0;display:none;" id="html2text_area" style="display:none;"></textarea>
+ <div class="edt_bott"><label for="code"><input name="" id="code" type="checkbox" value="" onclick="show_src(this)" />显示源码</label></div>
+</div>
+</div>
+</form>
+</body>
+</html>

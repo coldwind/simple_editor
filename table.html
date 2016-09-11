@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="editor_css/core.css" rel="stylesheet" type="text/css" />
+<script>
+function return_tablehtml()
+{
+	if(document.table_form.rows.value=="" || document.table_form.rows.value.replace(/\d+/ig,"")!="")
+	{
+		alert("请输入表格列数且必须为数字");
+		document.table_form.rows.focus();
+		return false;
+	}
+	else if(document.table_form.lgd.value=="" || document.table_form.lgd.value.replace(/\d+/ig,"")!="")
+	{
+		alert("请输入表格行数且必须为数字");
+		document.table_form.lgd.focus();
+		return false;
+	}
+	else if(document.table_form.table_w.value=="" || document.table_form.table_w.value.replace(/\d+/ig,"")!="")
+	{
+		alert("请输入表格的宽度且必须为数字");
+		document.table_form.table_w.focus();
+		return false;
+	}
+else if(document.table_form.table_border.value=="" || document.table_form.table_border.value.replace(/\d+/ig,"")!="")
+	{
+		alert("请输入表格的边框粗细且必须为数字");
+		document.table_form.table_border.focus();
+		return false;
+	}	
+else if(document.table_form.table_cellp.value=="" || document.table_form.table_cellp.value.replace(/\d+/ig,"")!="")
+	{
+		alert("请输入单元格边距且必须为数字");
+		document.table_form.table_cellp.focus();
+		return false;
+	}
+else if(document.table_form.table_cells.value=="" || document.table_form.table_cells.value.replace(/\d+/ig,"")!="")
+	{
+		alert("请输入单元格间距且必须为数字");
+		document.table_form.table_cells.focus();
+		return false;
+	}
+	else
+	{
+		t_row=document.table_form.rows.value;
+		t_lgd=document.table_form.lgd.value;
+		var for_td="";
+		var for_tr="";
+		for(i=1;i<=t_row;i++)
+		{
+			for(w=1;w<=t_lgd;w++)
+			{
+				for_td+="<td>&nbsp;</td>";
+			}
+			for_tr+="<tr>"+for_td+"</tr>";
+			for_td="";
+		}
+		if(document.table_form.table_u.value==1)
+		{
+			show_t_w=" width=\""+document.table_form.table_w.value+"\" ";
+		}
+		else
+		{
+			show_t_w=" width=\""+document.table_form.table_w.value+"%\" ";
+		}
+		showtable="<table"+show_t_w+" border=\""+document.table_form.table_border.value+"\" cellpadding=\""+document.table_form.table_cellp.value+"\" cellspacing=\""+document.table_form.table_cells.value+"\">"+for_tr+"</table>";	
+		window.returnValue=showtable;
+		window.close();
+	}
+}
+</script>
+</head>
+<body style="width:350px; ">
+<div class="edt_pop" style="left:2px;top:2px;">
+	<h2 class="titlebar">插入表格</h2>
+	<div class="edt_main">
+	<table>
+	<form action="" method="post" name="table_form" id="table_form">
+	<tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">行数：</td>
+      <td width="60" height="25" bgcolor="#FFFFFF"><input name="rows" type="text" id="rows" size="8" maxlength="2"></td>
+      <td width="50" height="25" align="right" bgcolor="#FFFFFF">列数：</td>
+      <td height="25" bgcolor="#FFFFFF"><input name="lgd" type="text" id="lgd" size="8" maxlength="2"></td>
+    </tr>
+    <tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">表格宽度：</td>
+      <td height="25" colspan="3" bgcolor="#FFFFFF"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+      <td width="75"><input name="table_w" type="text" id="table_w" value="100" size="8" maxlength="5"></td>
+      <td><select name="table_u" class="editor_txt" id="table_u">
+      <option value="1">像素</option>
+      <option value="2" selected>百分比</option>
+      </select></td>
+      </tr>
+      </table></td>
+     </tr>
+    <tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">边框粗细：</td>
+      <td height="25" colspan="3" bgcolor="#FFFFFF"><input name="table_border" type="text" class="input_txt" id="table_border" value="1" size="8" maxlength="2"></td>
+      </tr>
+    <tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">单元格边距：</td>
+      <td height="25" colspan="3" bgcolor="#FFFFFF"><input name="table_cellp" type="text" class="input_txt" id="table_cellp" value="0" size="8" maxlength="2"></td>
+      </tr>
+    <tr>
+      <td width="80" height="25" align="right" bgcolor="#FFFFFF">单元格间距：</td>
+      <td height="25" colspan="3" bgcolor="#FFFFFF"><input name="table_cells" type="text" class="input_txt" id="table_cells" value="0" size="8" maxlength="2"></td>
+      </tr>
+    <tr>
+      <td height="25" colspan="4" align="center" valign="middle" bgcolor="#FFFFFF">
+        <input type="button" value="确 定" class="input_submit" onClick="return_tablehtml()"  />
+		<input type="button" value="取 消" class="input_gray" onClick="window.close();" /></td>
+    </tr></form>
+	</table>
+	</div>
+</div>
+</body>
+</html>

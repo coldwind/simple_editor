@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link href="editor_css/core.css" rel="stylesheet" type="text/css" />
+<title>添加图片</title>
+<script language="JavaScript">
+<!--
+window.isIE = (navigator.appName == "Microsoft Internet Explorer");
+var addPicNum = 0;
+function insert_pic()
+{
+	if(document.insert_pic_form.photourl.value=="" || document.insert_pic_form.photourl.value=="http://")
+	{
+		alert("图片URL不能为空值");
+		document.insert_pic_form.photourl.focus();
+		return false;
+	}
+	pic_path = /^http:\/\//;
+	if(!pic_path.exec(document.insert_pic_form.photourl.value))
+	{
+		alert("你输入的图片URL格式不正确");
+		document.insert_pic_form.photourl.focus();
+		return false;
+	}
+	var imgObj = new Image();
+	imgObj.src = document.insert_pic_form.photourl.value;
+	var ulObj = document.getElementById('show_pic');
+	var picArrayObj = ulObj.getElementsByTagName('img');
+	if(picArrayObj.length<10)
+	{
+		addPicNum++;
+		document.insert_pic_form.photourl.value = 'http://';
+		var liObj = document.createElement('li');
+		liObj.setAttribute('id','pic_'+addPicNum);
+		img_h = imgObj.height;
+		img_w = imgObj.width;
+		if(img_h == 0 && img_w == 0)
+		{
+			img_b_w = 50;
+			img_b_h = 50;
+		}
+		else
+		{
+			if(img_h > 50 || img_w > 50)
+			{
+				if(50/img_h >= 50/img_w)
+				{
+					var img_b_w = 50;
+					var img_b_h = img_h * (50/img_w);
+				}
+				else
+				{
+					var img_b_w = img_w * (50/img_h);
+					var img_b_h = 50;
+				}
+			}
+			else
+			{
+				img_b_w = img_w;
+				img_b_h = img_h;
+			}
+		}
+		
+		var imgStr = '<img src="'+imgObj.src+'" width="'+img_b_w+'" height="'+img_b_h+'" /><br /><a href="javascript:delPic('+addPicNum+')">取消</a>';
+		liObj.innerHTML = imgStr;
+		document.getElementById('show_pic').appendChild(liObj);
+	}
+	else
+	{
+		alert('每次最多能添加10张图片');
+	}
+}
+function insert_html()
+{
+	var ulObj = document.getElementById('show_pic');
+	var picArrayObj = ulObj.getElementsByTagName('img');
+	var pichtml = '';
+	for(i=0;i<picArrayObj.length;i++)
+	{
+		var picsrc = picArrayObj[i].getAttribute('src');
+		pichtml += '<img src="'+picsrc+'"/>';
+	}
+	if(pichtml != '')
+	{
+		if(window.isIE) {
+			window.returnValue = pichtml;
+		}
+		else
+		{
+			window.opener.open_add_html(pichtml);
+		}
+	}
+	window.close();
+}
+function delPic(num)
+{
+	var liObj = document.getElementById('pic_'+num);
+	document.getElementById('show_pic').removeChild(liObj);
+}
+//-->
+</script>
+</head>
+<body>
+<div class="edt_pop" style="width:620px;">
+	<h2 class="titlebar">插入图片</h2>
+	<form action="" method="post" enctype="multipart/form-data" name="insert_pic_form" id="insert_pic_form" target="_self">
+	<div class="edt_main">
+		<!---标签页 start--->
+			 <div class="tabs_header">
+			  	<div class="tabstitle">选择插入图片来源：</div>
+			  <ul>
+				<li ><a href="upimage.php" target="_self"><span>我的电脑</span></a></li>
+				<li  class="selected" target="_self"><a href="linkimage.html" target="_self"><span>网上图片</span></a></li>
+			</ul>
+			  <div class="tabs_border"></div>
+			</div>
+		 <!---标签页 end--->
+		 <div class="tabs_upload">
+		 	<p class="pic_add">选择本地图片：<input name="photourl" type="text" style="width:350px;" id="photourl" value="http://" size="33"><input name="" type="button" value="添加" class="input_submit" onclick="insert_pic()" /></p>
+			<p class="pic_tips">
+                        <br /><strong>提示：</strong>此处插入的图片显示会受到图片存放地址的影响。 
+            </p>
+		 </div>
+		 <div class="up_area">
+		 	<p>要插入的图片：(每次最多能添加10张图片)</p>
+			<div class="view">
+				<ul id="show_pic">
+				</ul>
+			</div>
+			<p class="p_act"><input name="" type="button" value="插入图片" class="input_submit" onclick="insert_html()" /></p>
+		 </div>
+	</div>
+	</form>
+</div>
+</body>
+</html>

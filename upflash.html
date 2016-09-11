@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link href="editor_css/core.css" rel="stylesheet" type="text/css" />
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+</head>
+<script type="text/javascript">
+function Up_img_sub()
+{
+	if(document.sub_flash.flashurl.value == '' || document.sub_flash.flashurl.value == 'http://')
+	{
+		alert("请输入的FLASH URL");
+		return false;
+	}
+	var flash_style = /^http:\/\//;
+	if(!flash_style.exec(document.sub_flash.flashurl.value))
+	{
+		alert("你输入的FLASH URL格式不正确");
+		document.sub_flash.flashurl.focus();
+		return false;
+	}
+}
+</script>
+<body>
+<div class="edt_pop" style="left:2px;top:2px;">
+	<h2 class="titlebar"><span class="right"><a href="javascript:window.close();"><span>关闭</span></a></span>插入视频</h2>
+	<div class="edt_main">
+	<form action="upflash.php" name="sub_flash" method="POST" id="sub_flash" onsubmit="return(Up_img_sub())">
+		<P>链接内容：<input name="flashurl" type="text" class="input_txt" id="flashurl" size="20" value="http://"></p>
+		<p class="p_act"><input type="submit" value="确 定" class="input_submit" />
+		<input type="button" value="取 消" class="input_gray" onClick="window.close();" />
+		</p>
+	</form>
+	</div>
+</div>
+</body>
+</html>
